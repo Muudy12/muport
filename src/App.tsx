@@ -366,8 +366,8 @@ function EmailForm() {
       message.value
     ) {
       emailjs
-        .sendForm("service_5jluaqa", "template_hmn7kw2", e.currentTarget, {
-          publicKey: "1KZB447pgCT6MAn-m",
+        .sendForm(import.meta.env.VITE_EMAIL_SERVICEKEY, import.meta.env.VITE_EMAIL_TEMPLATEKEY, e.currentTarget, {
+          publicKey: import.meta.env.VITE_EMAIL_PUBLICKEY,
         })
         .then(
           () => {
