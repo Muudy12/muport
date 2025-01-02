@@ -1,0 +1,42 @@
+@keyframes fadeIn {
+  0% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: black;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.3rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    transform: translateX(-10px); /* Start at the original position */
+    opacity: 0; /* Fully visible */
+  }
+  to {
+    transform: translateX(0); /* Move 100px to the right */
+    opacity: 1; /* Fully transparent */
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(10px); /* Start at the original position */
+    opacity: 0; /* Fully visible */
+  }
+  to {
+    transform: translateY(0); /* Move 100px to the right */
+    opacity: 1; /* Fully transparent */
+  }
+}
