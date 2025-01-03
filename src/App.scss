@@ -74,6 +74,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    padding-top: env(safe-area-inset-top); /* Add space for the navigation bar */
 
     &.sideMenu {
       display: flex;
@@ -532,6 +533,9 @@
 
   & .about {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &__container {
       display: flex;
