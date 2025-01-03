@@ -16,7 +16,7 @@
     align-items: center;
 
     &.menuOpened {
-      display: none;
+      display: flex;
 
       @include tablet {
         display: flex;
