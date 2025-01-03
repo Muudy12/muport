@@ -28,13 +28,22 @@ function App() {
 
 function MainBody() {
   const [showSideMenu, setShowSideMenu] = useState(false);
+
+function hashChanged(hash:string) {
+    const target = document.getElementById(hash);
+    console.log('hsh: ', hash)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
   return (
     <>
       <div id="top" className={`main`}>
         <div className="up-arrow__container">
           <FaArrowAltCircleUp
             className="up-arrow"
-            onClick={() => (window.location.hash = "top")}
+            onClick={() => hashChanged("top")}
           />
         </div>
         <header className={`sideMenu ${showSideMenu ? "show" : "hide"}`}>
@@ -53,7 +62,7 @@ function MainBody() {
               <li
                 onClick={() => {
                   setShowSideMenu(false);
-                  window.location.hash = "projects";
+                 hashChanged("projects");
                 }}
               >
                 projects
@@ -61,7 +70,7 @@ function MainBody() {
               <li
                 onClick={() => {
                   setShowSideMenu(false);
-                  window.location.hash = "about";
+                  hashChanged("about");
                 }}
               >
                 about
@@ -72,7 +81,7 @@ function MainBody() {
               data-label="get connected"
               onClick={() => {
                 setShowSideMenu(false);
-                window.location.hash = "connect";
+                hashChanged("connect");
               }}
             >
               get connected
@@ -84,15 +93,15 @@ function MainBody() {
             <img className="logo" src={muPortLogo} alt="Mu Port Logo" />
           </div>
           <ul className="nav">
-            <li onClick={() => (window.location.hash = "projects")}>
+            <li onClick={() => hashChanged("projects")}>
               projects
             </li>
-            <li onClick={() => (window.location.hash = "about")}>about</li>
+            <li onClick={() => hashChanged("about")}>about</li>
           </ul>
           <h2
             className="get-connected"
             data-label="get connected"
-            onClick={() => (window.location.hash = "connect")}
+            onClick={() => hashChanged("connect")}
           >
             get connected
           </h2>
@@ -123,7 +132,7 @@ function MainBody() {
                 You can check out my{" "}
                 <a href="https://github.com/Muudy12">GitHub</a> for more sneak
                 peak on what I've been working on. And feel free to{" "}
-                <span onClick={() => (window.location.hash = "about")}>
+                <span onClick={() => hashChanged("connect")}>
                   contact
                 </span>{" "}
                 me for opportunities, idea sharing and collaboration.
