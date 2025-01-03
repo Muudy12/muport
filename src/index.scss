@@ -17,6 +17,8 @@ body {
   height: 100vh;
   overflow-y: scroll;
   position: relative;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 h1 {
