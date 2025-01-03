@@ -551,10 +551,10 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      justify-self: center;
       margin-bottom: 1rem;
-
+      
       @include tablet {
+        justify-self: center;
         width: 80%;
       }
 
