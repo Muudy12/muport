@@ -84,15 +84,15 @@ function MainBody() {
             <img className="logo" src={muPortLogo} alt="Mu Port Logo" />
           </div>
           <ul className="nav">
-            <li onClick={() => (window.location.href = "#projects")}>
+            <li onClick={() => (window.location.hash = "projects")}>
               projects
             </li>
-            <li onClick={() => (window.location.href = "#about")}>about</li>
+            <li onClick={() => (window.location.hash = "about")}>about</li>
           </ul>
           <h2
             className="get-connected"
             data-label="get connected"
-            onClick={() => (window.location.href = "#connect")}
+            onClick={() => (window.location.hash = "connect")}
           >
             get connected
           </h2>
@@ -123,7 +123,7 @@ function MainBody() {
                 You can check out my{" "}
                 <a href="https://github.com/Muudy12">GitHub</a> for more sneak
                 peak on what I've been working on. And feel free to{" "}
-                <span onClick={() => (window.location.href = "#about")}>
+                <span onClick={() => (window.location.hash = "about")}>
                   contact
                 </span>{" "}
                 me for opportunities, idea sharing and collaboration.

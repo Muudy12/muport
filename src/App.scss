@@ -256,18 +256,18 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: center;
     position: relative;
     flex-direction: column;
     min-height: fit-content;
     width: 100%;
     background-color: rgb(241, 241, 241);
     box-shadow: 0 0 0.5rem 0.8rem white;
-    overflow: hidden;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    height: 64px;
 
     @include tablet2 {
+      justify-content: center;
       flex-direction: row;
       @include containerSidePadding();
     }
@@ -543,6 +543,7 @@
       box-shadow: 0 -0.2rem 0.3rem white inset, 0 0.2rem 0.3rem white inset;
       @include containerSidePadding();
       width: 100%;
+      box-sizing: border-box;
     }
 
     & .card {
