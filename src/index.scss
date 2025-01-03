@@ -11,7 +11,7 @@ html, body {
   box-sizing: border-box;
 }
 
-#root {
+body {
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -19,6 +19,10 @@ html, body {
   position: relative;
   width: 100vw;
   overflow-x: hidden;
+}
+#root {
+  width: 100%;
+  height: fit-content;
 }
 
 h1 {
