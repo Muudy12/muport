@@ -34,7 +34,7 @@ function MainBody() {
         <div className="up-arrow__container">
           <FaArrowAltCircleUp
             className="up-arrow"
-            onClick={() => (window.location.href = "#top")}
+            onClick={() => (window.location.hash = "top")}
           />
         </div>
         <header className={`sideMenu ${showSideMenu ? "show" : "hide"}`}>
@@ -53,7 +53,7 @@ function MainBody() {
               <li
                 onClick={() => {
                   setShowSideMenu(false);
-                  window.location.href = "#projects";
+                  window.location.hash = "projects";
                 }}
               >
                 projects
@@ -61,7 +61,7 @@ function MainBody() {
               <li
                 onClick={() => {
                   setShowSideMenu(false);
-                  window.location.href = "#about";
+                  window.location.hash = "about";
                 }}
               >
                 about
@@ -72,7 +72,7 @@ function MainBody() {
               data-label="get connected"
               onClick={() => {
                 setShowSideMenu(false);
-                window.location.href = "#connect";
+                window.location.hash = "connect";
               }}
             >
               get connected
