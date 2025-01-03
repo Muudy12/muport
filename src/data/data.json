@@ -19,42 +19,42 @@
     {
       "id": 101,
       "title": "InStock",
-      "image": "/src/assets/images/instock-proj.png",
+      "image": "/images/instock-proj.png",
       "url": "https://instock-beta.netlify.app/",
       "repo": "https://github.com/Muudy12/instock-client-beta"
     },
     {
       "id": 102,
       "title": "Bubble Pop",
-      "image": "/src/assets/images/bubble-pop-proj.png",
+      "image": "/images/bubble-pop-proj.png",
       "url": "https://bubblepop-game.netlify.app/",
       "repo": "https://github.com/Muudy12/bubble-game"
     },
     {
       "id": 103,
       "title": "Food Coma",
-      "image": "/src/assets/images/foodcoma-proj.png",
+      "image": "/images/foodcoma-proj.png",
       "url": "https://food-coma.netlify.app/",
       "repo": "https://github.com/Muudy12/food-coma"
     },
     {
       "id": 104,
       "title": "No Bad Movies",
-      "image": "/src/assets/images/nobadmovies-proj.png",
+      "image": "/images/nobadmovies-proj.png",
       "url": "https://no-bad-movies.netlify.app/",
       "repo": "https://github.com/Muudy12/no-bad-movies"
     },
     {
       "id": 105,
       "title": "Not My Food",
-      "image": "/src/assets/images/notmyfood-proj.png",
+      "image": "/images/notmyfood-proj.png",
       "url": "https://not-my-food.netlify.app/",
       "repo": "https://github.com/Muudy12/not-my-food"
     },
     {
       "id": 106,
       "title": "Love Quest",
-      "image": "/src/assets/images/lovequest-proj.png",
+      "image": "/images/lovequest-proj.png",
       "url": "https://mu-unity-games.netlify.app/",
       "repo": "https://github.com/Muudy12/unity-games"
     }

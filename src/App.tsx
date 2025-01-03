@@ -3,7 +3,7 @@ import PageHelmet from "./helmet/helmet";
 import muPortLogo from "./assets/logos/muport-logo-rbg.png";
 import mudah from "./assets/images/mudah.png";
 import bannerBg from "./assets/images/banner-bg.jpg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import dataPath from "./data/data.json?url";
 import emailjs from "@emailjs/browser";
 import bg1 from "./assets/images/bg-1.jpg";
@@ -165,8 +165,7 @@ interface IProjectCard {
 
 function ProjectCardS() {
   const [projects, setProjects] = useState<IProjectCard[] | null>(null);
-  const scrollContainerRef = useRef<HTMLUListElement>(null);
-  const [projectCardWidth, setProjectCardWidth] = useState<number>(288);
+  const [currentScrollCount, setCurrentScrollCount] = useState<number>(0);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -187,56 +186,136 @@ function ProjectCardS() {
   }, []);
 
   const scroll = (direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const projectCardElement = scrollContainerRef.current.querySelector(
-        "li.card"
-      ) as HTMLLIElement | null;
-      if (projectCardElement) {
-        setProjectCardWidth(projectCardElement.offsetWidth);
-      }
+      if (projects) {
+        let nextCount: number = 0;
 
-      const scrollAmount = projectCardWidth ? projectCardWidth : 500; // Adjust scroll distance
-      scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+        if (direction === "left") {
+          nextCount = currentScrollCount - 1;
+
+          if (nextCount < 0) {
+            setCurrentScrollCount(0);
+          } else {
+            setCurrentScrollCount(nextCount);
+            handleLeftClick(nextCount);
+          }
+        } else {
+          nextCount = currentScrollCount + 1;
+          
+          if (nextCount > projects.length - 1) {
+            setCurrentScrollCount(projects.length - 1);
+          } else {
+            setCurrentScrollCount(nextCount);
+            handleRightClick(nextCount);
+          }
+        }
+      }
+  };
+
+  const changeCard = (card: IProjectCard | null, projCard: HTMLLIElement) => {
+    if (card) {
+      setTimeout(() => {
+        const h3 = projCard.querySelector("h3");
+        if (h3) h3.textContent = card.title;
+        const img = projCard.querySelector("img");
+        if (img) {
+          img.src = card.image;
+          img.alt = card.title + " Project Thumbnail";
+        }
+        const btn1 = projCard.querySelectorAll("button")[0];
+        if (btn1)
+          btn1.onclick = () => {
+            window.open(card.url);
+          };
+        const btn2 = projCard.querySelectorAll("button")[1];
+        if (btn2)
+          btn2.onclick = () => {
+            window.open(card.repo);
+          };
+      }, 225); // delay by 225 milliseconds
     }
   };
+
+  function handleLeftClick(nextCount: number) {
+    const projCard = document.querySelector("#projCard") as HTMLLIElement;
+    if (projCard) {
+      // Add the animation class
+      projCard.classList.add("slide-left");
+
+      // Remove the animation class after it ends to allow replay
+      const onAnimationEnd = () => {
+        if (projCard) {
+          projCard.classList.remove("slide-left");
+          projCard.removeEventListener("animationend", onAnimationEnd);
+        }
+      };
+      const card = projects ? projects[nextCount] : null;
+      changeCard(card, projCard);
+
+      projCard.addEventListener("animationend", onAnimationEnd);
+    }
+  }
+
+  function handleRightClick(nextCount: number) {
+    const projCard = document.querySelector("#projCard") as HTMLLIElement;
+    if (projCard) {
+      // Add the animation class
+      projCard.classList.add("slide-right");
+
+      // Remove the animation class after it ends to allow replay
+      const onAnimationEnd = () => {
+        if (projCard) {
+          projCard.classList.remove("slide-right");
+          projCard.removeEventListener("animationend", onAnimationEnd);
+        }
+      };
+
+      const card = projects ? projects[nextCount] : null;
+      changeCard(card, projCard);
+
+      projCard.addEventListener("animationend", onAnimationEnd);
+    }
+  }
 
   return (
     <>
       <div className="projects__scroll-container">
-        <FaArrowAltCircleLeft
-          className="btn leftward"
-          onClick={() => scroll("left")}
-        />
-
         {/* Scrollable Container */}
-        <ul className="projects scroll-list" ref={scrollContainerRef}>
-          {projects?.map((p, index) => {
-            return (
-              <>
-                <li className="card" key={p.id | index}>
-                  <h3 className="header">{p.title}</h3>
-                  <img src={p.image} alt={`${p.title} Project Thumbnail`} />
-                  <div className="btn-container">
-                    <button className="btn" onClick={() => window.open(p.url)}>
-                      Visit
-                    </button>
-                    <button className="btn" onClick={() => window.open(p.repo)}>
-                      Repo
-                    </button>
-                  </div>
-                </li>
-              </>
-            );
-          })}
+        <ul className="projects scroll-list">
+          {projects && (
+            <li id="projCard" className="card">
+              <h3 className="header">{projects[0].title}</h3>
+              <img
+                src={projects[0].image}
+                alt={`${projects[0].title} Project Thumbnail`}
+              />
+              <div className="btn-container">
+                <button
+                  className="btn"
+                  onClick={() => window.open(projects[0].url)}
+                >
+                  Visit
+                </button>
+                <button
+                  className="btn"
+                  onClick={() => window.open(projects[0].repo)}
+                >
+                  Repo
+                </button>
+              </div>
+            </li>
+          )}
         </ul>
 
-        <FaArrowAltCircleRight
-          className="btn rightward"
-          onClick={() => scroll("right")}
-        />
+        <div className="btn__container">
+          <FaArrowAltCircleLeft
+            className="btn leftward"
+            onClick={() => scroll("left")}
+          />
+          <FaArrowAltCircleRight
+            className="btn rightward"
+            onClick={() => scroll("right")}
+          />
+        </div>
       </div>
       <ul className="projects non-scroll">
         {projects?.map((p, index) => {
@@ -366,9 +445,14 @@ function EmailForm() {
       message.value
     ) {
       emailjs
-        .sendForm(import.meta.env.VITE_EMAIL_SERVICEKEY, import.meta.env.VITE_EMAIL_TEMPLATEKEY, e.currentTarget, {
-          publicKey: import.meta.env.VITE_EMAIL_PUBLICKEY,
-        })
+        .sendForm(
+          import.meta.env.VITE_EMAIL_SERVICEKEY,
+          import.meta.env.VITE_EMAIL_TEMPLATEKEY,
+          e.currentTarget,
+          {
+            publicKey: import.meta.env.VITE_EMAIL_PUBLICKEY,
+          }
+        )
         .then(
           () => {
             name.value = "";

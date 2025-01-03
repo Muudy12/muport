@@ -4,15 +4,19 @@
   font-weight: 400;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+body {
   display: flex;
-  place-content: center;
-  min-width: 320px;
-  min-height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
+  justify-content: center;
+  height: 100vh;
+  overflow-y: scroll;
+  position: relative;
 }
 
 h1 {
