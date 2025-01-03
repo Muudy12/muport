@@ -125,7 +125,7 @@ function hashChanged(hash:string) {
                 <span className="role">Web Developer</span>
               </h2>
               <p>
-                I love to experiment with ideas and bring them to live through
+                I love to experiment with ideas and bring them to life through
                 web development.
               </p>
               <p>

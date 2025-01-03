@@ -560,6 +560,10 @@
 
       & .header {
         margin: 0;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
       }
 
       & .text {
@@ -573,6 +577,7 @@
         @include tablet2 {
           flex-direction: row;
           text-align: justify;
+          justify-content: center;
         }
 
         & span {
