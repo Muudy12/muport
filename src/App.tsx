@@ -156,7 +156,6 @@ function MainBody() {
 }
 
 interface IProjectCard {
-  id: number;
   title: string;
   image: string;
   url: string;
@@ -321,7 +320,7 @@ function ProjectCardS() {
         {projects?.map((p, index) => {
           return (
             <>
-              <li className="card" key={p.id | index}>
+              <li className="card" key={index}>
                 <h3 className="header">{p.title}</h3>
                 <img src={p.image} alt={`${p.title} Project Thumbnail`} />
                 <div className="btn-container">
